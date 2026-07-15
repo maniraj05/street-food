@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    {% load static %}
+    {% include 'header.html' %}
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+		      <a class="navbar-brand" href="{% url 'customerprofile' %}"><span class="flaticon-pizza-1 mr-1"></span>Street Food<br><small>Delivery System</small></a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="oi oi-menu"></span> Menu
+		      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                <li class="nav-item "><a href="/customer_details_display/" class="nav-link">MyDetails</a></li>
+                <li class="nav-item"><a href="/customer_change_password/" class="nav-link">Changepassword</a></li>
+                <li class="nav-item"><a href="/add_address/" class="nav-link">Add Address</a></li>
+                <li class="nav-item"><a href="/customer_view_address/" class="nav-link">View Address</a></li>
+                <li class="nav-item"><a href="/customer_view_food/" class="nav-link">Hotels</a></li>
+                <li class="nav-item"><a href="/customer_view_order/" class="nav-link">My Cart</a></li>
+                <li class="nav-item"><a href="/customer_view_orders/" class="nav-link">View Orders</a></li>
+	          <li class="nav-item"><a href="/customer_logout/" class="nav-link">Logout</a></li>
+
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+
+
+<img src="{% static 'images/edit33.jpg' %}" width="100%" />
+<br><br>
+<table border="1" cellpadding="10" cellspacing="0" style="color:#FFFFFF" width="100%">
+    <thead>
+    <tr>
+        <th>Customer Email</th>
+        <th>Food</th>
+        <th>No.Of. Quantity</th>
+        <th>Cost</th>
+        <th>Discount</th>
+        <th>Total Cost</th>
+        <!--<th>Status</th>-->
+        <th>Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+    <tr>
+        <td>{{order.customer.email}}</td>
+        <td>{{order.food.foodname}}</td>
+        <td>{{order.cart}}</td>
+        <td>{{order.cost}}</td>
+        <td>{{order.discount}}</td>
+        <td>{{order.finalcost}}</td>
+
+        <td>      {% if order.stutuss == 0 %}
+
+            <a href="{% url 'customer_order_edit' id=order.id %}">Edit</a>
+            <a href="{% url 'order_delete' id=order.id %}" onclick="return confirm('really want delete?');">Delete</a>
+            <!--<td><a href="/food_delete/{{food.id}}" onclick="return confirm('really want delete?');">Delete</a></td>-->
+            {% endif %}
+        </td>
+
+
+        <!--<td>
+                                 {% if order.stutuss == 0 %}
+             <span class="black">Pending</span>
+             <a href="{% url 'order_cancel' food_id=order.id %}">Cancel</a>
+            <a href="{% url 'customer_order_edit' id=order.id %}">Edit</a>
+
+                                 {% elif order.stutuss == 1 %}
+                                    <span class="green">Accepted</span>
+                                {% elif order.stutuss == 2 %}
+                                    <span class="red">Rejected</span>
+                                {% elif order.stutuss == 3 %}
+                                    <span class="black">Delivered</span>
+                                {% elif order.stutuss == 4 %}
+                                    <span class="black">Cancelled</span>
+                                {% else %}
+
+
+                                {% endif %}
+            </td>-->
+	</tr>
+
+	{% endfor %}
+	</tbody>
+</table>
+<br><br>
+      <label class="mb-2 text-white" >Total Quantity : {{totalq}}</label>
+      <label class="mb-2 text-white" >Total Cost : {{totalcost}}</label>
+      <label class="mb-2 text-white" >Total Discount : {{totaldiscount}}</label>
+      <label class="mb-2 text-white" >Final Cost : {{totalcosts}}</label>
+
+
+
+<div >
+                                    <label class="mb-2 text-white" for="address">Select Your Address:</label>
+                                     {% for add in adds %}
+                                     <input type="radio" class="form-radio" name="address" value="{{add.address}}"/>
+                                     <label class="mb-2 text-white">{{add.address}} ({{add.typeofadd}})</label>
+                                     {% endfor %}
+                                </div>
+
+<center><div class="form-group">
+    <a href="{% url 'checkout' %}" class="btn btn-primary py-3 px-5">Checkout</a>
+</div></center>
+</body>
+</html>
+{% include 'footer.html' %}

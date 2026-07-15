@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'header.html' %}
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+		      <a class="navbar-brand" href="{% url 'customerprofile' %}"><span class="flaticon-pizza-1 mr-1"></span>Street Food<br><small>Delivery System</small></a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="oi oi-menu"></span> Menu
+		      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                <li class="nav-item "><a href="/customer_details_display/" class="nav-link">MyDetails</a></li>
+                <li class="nav-item"><a href="/customer_change_password/" class="nav-link">Changepassword</a></li>
+                <li class="nav-item"><a href="/add_address/" class="nav-link">Add Address</a></li>
+              <li class="nav-item"><a href="/customer_view_address/" class="nav-link">View Address</a></li>
+                <li class="nav-item"><a href="/customer_view_food/" class="nav-link">Hotels</a></li>
+                <li class="nav-item"><a href="/customer_view_order/" class="nav-link">My Cart</a></li>
+                <li class="nav-item"><a href="/customer_view_orders/" class="nav-link">View Orders</a></li>
+	          <li class="nav-item"><a href="/customer_logout/" class="nav-link">Logout</a></li>
+
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+
+
+<img src="{% static 'images/edit33.jpg' %}" width="100%" />
+<br><br>
+<table border="1" cellpadding="10" cellspacing="0" style="color:#FFFFFF" width="100%">
+    <thead>
+    <tr>
+        <th>Address</th>
+        <th>Type of address</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for address in address %}
+    <tr>
+        <td>{{address.address}}</td>
+        <td>{{address.typeofadd}}</td>
+        <td><a href="/customer_address_edit/{{address.id}}">Edit</a> </td>
+        <td><a href="/address_delete/{{address.id}}"  onclick="return confirm('really want delete?');">Delete</a> </td>
+
+
+
+
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+</body>
+</html>
+{% include 'footer.html' %}

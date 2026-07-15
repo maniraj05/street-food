@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+    <meta charset="UTF-8">
+       {% include 'header.html' %}
+
+    <title>merchant</title>
+</head>
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+		      <a class="navbar-brand" href="{%  url 'merchantprofile' %}"><span class="flaticon-pizza-1 mr-1"></span>Street Food<br><small>Delivery System</small></a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="oi oi-menu"></span> Menu
+		      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a href="/merchant_details_display/" class="nav-link">Hotel</a></li>
+				                <li class="nav-item "><a href="/merchant_view_feedback/" class="nav-link">Feedbacks</a></li>
+				<li class="nav-item"><a href="/merchant_change_password/" class="nav-link">Change Password</a></li>
+				<li class="nav-item"><a href="/merchant_view_orders/" class="nav-link">View Orders</a></li>
+                <li class="nav-item"><a href="/merchant_logout/" class="nav-link">Logout</a></li>
+
+	        </ul>
+	      </div>
+        </div>
+	  </nav>
+
+<center><h2>Merchant page</h2></center>
+<img src="{% static 'images/merchant.jpg' %}" width="100%" height="500px"/>
+</html>
+
+{% include 'footer.html' %}

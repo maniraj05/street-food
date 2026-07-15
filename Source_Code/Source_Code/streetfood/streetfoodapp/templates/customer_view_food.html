@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>food</title>
+</head>
+{% include 'header.html' %}
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+		      <a class="navbar-brand" href="{% url 'customerprofile' %}"><span class="flaticon-pizza-1 mr-1"></span>Street Food<br><small>Delivery System</small></a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="oi oi-menu"></span> Menu
+		      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	           <li class="nav-item"><a href="/customer_details_display/" class="nav-link">MyDetails</a></li>
+	          <li class="nav-item"><a href="/customer_change_password/" class="nav-link">Changepassword</a></li>
+                <li class="nav-item"><a href="/add_address/" class="nav-link">Add Address</a></li>
+                <li class="nav-item"><a href="/customer_view_address/" class="nav-link">View Address</a></li>
+	          <li class="nav-item"><a href="/customer_view_food/" class="nav-link">Hotels</a></li>
+	          <li class="nav-item "><a href="/customer_view_order/" class="nav-link">My Cart</a></li>
+                <li class="nav-item"><a href="/customer_view_orders/" class="nav-link">View Orders</a></li>
+	          <li class="nav-item"><a href="/customer_logout/" class="nav-link">Logout</a></li>
+
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+<body>
+<img src="{% static 'images/edit33.jpg' %}" height="400px" width="100%" />
+<br><br>
+<table border="1" cellpadding="10" cellspacing="0" style="color:#FFFFFF" width="100%">
+  <thead>
+  <tr>
+      <th>HotelName</th>
+      <th>HotelContact</th>
+      <th>HotelEmail</th>
+      <th>City</th>
+      <th>HotelImage</th>
+      <th>Address</th>
+      <th>Menu</th>
+      <th>Feedbacks</th>
+
+
+  </tr>
+  </thead>
+    <tbody>
+    {% for hotel in hotels %}
+    <tr>
+        <td>{{hotel.hotel}}</td>
+        <td>{{hotel.mobile}}</td>
+        <td>{{hotel.email}}</td>
+        <td>{{hotel.city}}</td>
+        <td><img src="{{hotel.img.url}}" height="180px" width="180px"></td>
+        <td>{{hotel.address}}</td>
+        <td><a href="/view_menu/{{hotel.id}}">Menu</a> </td>
+        <td><a href="/feedback/{{hotel.id}}">AddFeedback</a><br>
+        <a href="/customer_view_feedback/{{hotel.id}}">ViewFeedback</a></td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+</body>
+</html>
+{% include 'footer.html' %}

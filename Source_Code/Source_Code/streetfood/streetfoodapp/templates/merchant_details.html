@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+    <meta charset="UTF-8">
+    <title>merchant_details</title>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+		      <a class="navbar-brand" href="{%  url 'merchantprofile' %}"><span class="flaticon-pizza-1 mr-1"></span>Street Food<br><small>Delivery System</small></a>
+		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="oi oi-menu"></span> Menu
+		      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="/merchant_details_display/" class="nav-link">Hotel</a></li>
+				<li class="nav-item "><a href="/merchant_view_feedback/" class="nav-link">Feedbacks</a></li>
+				<li class="nav-item"><a href="/merchant_change_password/" class="nav-link">Change Password</a></li>
+				<li class="nav-item"><a href="/merchant_view_orders/" class="nav-link">View Orders</a></li>
+                <li class="nav-item"><a href="/merchant_logout/" class="nav-link">Logout</a></li>
+
+	        </ul>
+	      </div>
+        </div>
+	  </nav>
+
+<img src="{% static 'images/123.jpg' %}" width="100%" height="500px"/>
+<br><br>
+<table  style="color:#FFFFFF" border="1" width="100%" cellspacing="0" cellpadding="5">
+	<thead>
+	<tr>
+		<th>ContactName</th>
+		<th>Mobile</th>
+		<th>City</th>
+		<th>Email</th>
+		<th>Hotel</th>
+		<th>Image</th>
+		<th>Address</th>
+		<th>Update</th>
+		<th>Delete</th>
+		<th>Food</th>
+		<th>Menu</th>
+
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>{{merchant.fullname}}</td>
+		<td>{{merchant.mobile}}</td>
+		<td>{{merchant.city}}</td>
+		<td>{{merchant.email}}</td>
+		<td>{{merchant.hotel}}</td>
+		<td><img src="{{merchant.img.url}}" width="180px" height="180px"></td>
+		<td>{{merchant.address}}</td>
+		<td><a href="/merchant_edit/{{merchant.email}}">Update</a></td>
+		<td><a href="/merchant_delete/{{merchant.email}}" onclick="return confirm('really want delete?');">Delete</a></td>
+		<td><a href="/add_food_court/{{merchant.id}}">AddMenu</a> </td>
+		<td><a href="/merchant_view_food/{{merchant.id}}">viewMenu</a> </td>
+	</tr>
+	</tbody>
+</table>
+{% include 'footer.html' %}
+</body>
+</html>
